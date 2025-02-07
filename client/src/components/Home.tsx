@@ -54,18 +54,19 @@ const Home = () => {
   ];
 
   return (
-    <div>
-      <h1>Welcome to NYC Slice Quest!</h1>
-      <div className="pizza-slice-container">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
+      <h1 className="text-3xl font-bold text-red-600 mb-6">Welcome to NYC Slice Quest!</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {pizzaTypesArray.map((slice) => (
-          <div key={slice.id} className="pizza-item">
-            <h2>{slice.pizzaType}</h2>
-            <img src={slice.imageUrl} alt={slice.pizzaType} className="pizza-image" />
+          <div key={slice.id} className="flex flex-col items-center bg-white p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+            <img src={slice.imageUrl} alt={slice.pizzaType} className="w-40 h-40 object-cover rounded-lg shadow-md" />
+            <h2 className="mt-3 text-lg font-semibold text-gray-800">{slice.pizzaType}</h2>
           </div>
         ))}
       </div>
     </div>
   );
 };
+
 
 export default Home;
