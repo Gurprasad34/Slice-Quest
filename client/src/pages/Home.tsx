@@ -4,6 +4,7 @@ import type { UserData } from "../interfaces/UserData";
 import ErrorPage from "./ErrorPage";
 import UserList from '../components/Users';
 import auth from '../utils/auth';
+import HomeC from "../components/Home";
 
 const Home = () => {
 
@@ -49,6 +50,8 @@ const Home = () => {
                         <h1>
                             Login to view all your friends!
                         </h1>
+                        <HomeC />
+
                     </div>
                 ) : (
                     <UserList users={users} />
