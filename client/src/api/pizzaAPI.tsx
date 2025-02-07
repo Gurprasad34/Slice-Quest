@@ -1,8 +1,11 @@
+import auth from "../utils/auth";
+
 const retrieveShops = async () => {
     try {
     const response = await fetch('/api/pizza/pizza-shops', {
         headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${auth.getToken()}`,
         },
     });
 
@@ -24,6 +27,8 @@ const retrieveTypes = async () => {
     const response = await fetch('/api/pizza/pizza-types', {
         headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${auth.getToken()}`,
+
         },
     });
 
