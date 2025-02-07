@@ -1,28 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import PizzaShopItem from '../components/PizzaShopItem';
+import PizzaShopList from '../components/PizzaShops';
 import { fetchPizzaShopsByType } from '../utils/api';
-
-const PizzaShops = () => {
+import PizzaShop from './PizzaShop';
+interface IPizzaShop {
+  id: number;
+  name: string;
+  location: string;
+  address: string;
+  phone: string;
+  website: string;
+}
+const PizzaShops = ({shops}) => {
   const { pizzaType } = useParams();
-  const [pizzaShops, setPizzaShops] = useState<any[]>([]);
-
-  useEffect(() => {
-    const getPizzaShops = async () => {
-      if (pizzaType) {
-        const data = await fetchPizzaShopsByType(pizzaType);
-        setPizzaShops(data);
-      }
-    };
-    getPizzaShops();
-  }, [pizzaType]);
-
   return (
     <div>
       <h1>{pizzaType} Pizza Shops</h1>
       <div className="pizza-shop-list">
-        {pizzaShops.map((shop) => (
-          <PizzaShopItem key={shop.id} shop={shop} />
+        {shops.map((shop: IPizzaShop) => (
+          <PizzaShop key={shop.id} shop={shop} />
         ))}
       </div>
     </div>
