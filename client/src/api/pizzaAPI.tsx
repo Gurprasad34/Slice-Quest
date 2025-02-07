@@ -39,3 +39,5 @@ const retrieveTypes = async () => {
     return Promise.reject('Could not fetch pizza types');
     }
 };
+
+export {retrieveShops, retrieveTypes}
