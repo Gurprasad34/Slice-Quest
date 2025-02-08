@@ -1,5 +1,5 @@
 import { DataTypes, type Sequelize, Model, type Optional } from 'sequelize';
-import { PizzaShop } from './pizza-shop';
+import { PizzaShop } from './pizza-shop.js';
 
 interface PizzaTypeAttributes {
   id: number;
@@ -36,7 +36,6 @@ export function PizzaTypeFactory(sequelize: Sequelize): typeof PizzaType {
       pizzaShopId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        // This tells Sequelize that pizzaShopId refers to the id field in the PizzaShop table.
         references: {
           model: PizzaShop,
           key: 'id',

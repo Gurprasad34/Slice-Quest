@@ -9,11 +9,11 @@ const retrieveShops = async () => {
         },
     });
 
-    const data = await response.json();
-
     if (!response.ok) {
-        throw new Error('Failed to retrieve pizza shops, check network tab!');
-    }
+        throw new Error(`Failed to retrieve pizza shops: ${response.status} ${response.statusText}`);
+      }
+
+    const data = await response.json();
 
     return data;
     } catch (err) {

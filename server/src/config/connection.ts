@@ -3,14 +3,18 @@ dotenv.config();
 
 import { Sequelize } from 'sequelize';
 
+if (!process.env.DB_NAME || !process.env.DB_USER || !process.env.DB_PASSWORD) {
+  throw new Error("Missing database environment variables. Check your .env file.");
+}
+
 const sequelize = process.env.DB_URL
   ? new Sequelize(process.env.DB_URL)
   : new Sequelize(
-      process.env.DB_NAME || '',
-      process.env.DB_USER || '',
-      process.env.DB_PASSWORD,
+      process.env.DB_NAME,
+      process.env.DB_USER,
+      process.env.DB_PASSWORD || '',
       {
-        host: 'localhost',
+        host: process.env.DB_HOST || 'localhost',
         dialect: 'postgres',
         dialectOptions: {
           decimalNumbers: true,
