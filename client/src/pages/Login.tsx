@@ -1,12 +1,11 @@
 import { useState, type FormEvent, type ChangeEvent } from 'react';
-
 import Auth from '../utils/auth';
 import { login } from '../api/authAPI';
 import type { UserLogin } from '../interfaces/UserLogin';
 
 const Login = () => {
   const [loginData, setLoginData] = useState<UserLogin>({
-    username: '',
+    email: '', 
     password: '',
   });
 
@@ -35,12 +34,12 @@ const Login = () => {
       <form className='form login-form' onSubmit={handleSubmit}>
         <h1>Login</h1>
         <div className='form-group'>
-          <label>Username</label>
+          <label>Email</label>
           <input
             className='form-input'
-            type='text'
-            name='username'
-            value={loginData.username || ''}
+            type='email'
+            name='email'
+            value={loginData.email || ''}
             onChange={handleChange}
           />
         </div>

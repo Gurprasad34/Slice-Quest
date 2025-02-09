@@ -47,10 +47,10 @@ const Home = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {pizzaTypesArray.map((slice) => (
           <Link
-            key={slice.id}
-            to={`/pizza-shops?type=${encodeURIComponent(slice.pizzaType)}`}
-            className="flex flex-col items-center bg-white p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105"
-          >
+          key={slice.id}
+          to={`/pizza-shops/${encodeURIComponent(slice.pizzaType)}`}
+          className="flex flex-col items-center bg-white p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105"
+        >
             <img
               src={slice.imageUrl}
               alt={slice.pizzaType}
