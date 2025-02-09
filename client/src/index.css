@@ -36,6 +36,9 @@ main {
 h1 {
   font-size: 2em;
   margin: 0.67em 0;
+  font-family: "Luckiest Guy", serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 /* Grouping content
@@ -360,7 +363,7 @@ body {
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family: "Luckiest Guy", serif;
   font-size: 16px;
   color: #1a1a1a;
 }
@@ -373,6 +376,8 @@ h5,
 h6 {
   margin: 0 0 0.5rem;
   line-height: 1.25;
+  font-family: "Luckiest Guy", serif;
+
 }
 
 h1 {
@@ -403,6 +408,7 @@ p {
   font-size: 1.1rem;
   margin: 0 0 1rem;
   line-height: 1.5;
+  font-family: "Luckiest Guy", serif;
 }
 
 ul,
@@ -1706,4 +1712,11 @@ form [type='radio'] {
   .align-content-center-xl {
     align-content: center;
   }
+}
+
+
+.luckiest-guy-regular {
+  font-family: "Luckiest Guy", serif;
+  font-weight: 400;
+  font-style: normal;
 }
