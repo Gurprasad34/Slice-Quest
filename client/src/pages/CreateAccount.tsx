@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const CreateAccount: React.FC = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -14,11 +14,8 @@ const CreateAccount: React.FC = () => {
             setError('Passwords do not match');
             return;
         }
-        // Here you would typically send the data to your server
-        
-        // For this example, we'll just log it and redirect
         console.log({ username, password });
-        history.push('/home');
+        navigate('/home');
     };
 
     return (

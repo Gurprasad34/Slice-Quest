@@ -7,5 +7,7 @@ const User = UserFactory(sequelize);
 const PizzaShop = PizzaShopFactory(sequelize);
 const PizzaType = PizzaTypeFactory(sequelize);
 
+PizzaShop.hasMany(PizzaType, { foreignKey: 'pizzaShopId', onDelete: 'CASCADE' });
+PizzaType.belongsTo(PizzaShop, { foreignKey: 'pizzaShopId' });
 
-export { User, PizzaShop, PizzaType };
+export { sequelize, User, PizzaShop, PizzaType };
