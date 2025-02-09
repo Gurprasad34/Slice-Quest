@@ -3,20 +3,21 @@ import { Link } from 'react-router-dom';
 import auth from '../utils/auth';
 
 const Navbar = () => {
-  const [loginCheck, setLoginCheck] = useState(false);
-
-  const checkLogin = () => {
-    if (auth.loggedIn()) {
-      setLoginCheck(true);
-    }
-  };
+  const [loginCheck, setLoginCheck] = useState(auth.loggedIn());
 
   useEffect(() => {
-    checkLogin();
+    const updateLoginState = () => setLoginCheck(auth.loggedIn());
+
+    // Listen for login/logout changes
+    window.addEventListener('storage', updateLoginState);
+
+    return () => {
+      window.removeEventListener('storage', updateLoginState);
+    };
   }, []);
 
   return (
-    <div className='display-flex justify-space-between align-center py-2 px-5 mint-green'>
+    <div className="display-flex justify-space-between align-center py-2 px-5 mint-green">
       <h1>🍕 NYC Slice Quest 🍕</h1>
       <div className="nav-links">
         <Link to="/" className="btn">Home</Link>

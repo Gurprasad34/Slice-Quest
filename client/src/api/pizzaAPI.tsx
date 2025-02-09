@@ -1,48 +1,39 @@
-import auth from "../utils/auth";
-
 const retrieveShops = async () => {
     try {
-    const response = await fetch('/api/pizza/pizza-shops', {
-        headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${auth.getToken()}`,
-        },
-    });
+        const response = await fetch('/api/pizza/pizza-shops', {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
 
-    if (!response.ok) {
-        throw new Error(`Failed to retrieve pizza shops: ${response.status} ${response.statusText}`);
-      }
+        if (!response.ok) {
+            throw new Error(`Failed to retrieve pizza shops: ${response.status} ${response.statusText}`);
+        }
 
-    const data = await response.json();
-
-    return data;
+        return await response.json();
     } catch (err) {
-    console.log('Error fetching pizza shops:', err);
-    return Promise.reject('Could not fetch pizza shops');
+        console.log('Error fetching pizza shops:', err);
+        return Promise.reject('Could not fetch pizza shops');
     }
 };
 
 const retrieveTypes = async () => {
     try {
-    const response = await fetch('/api/pizza/pizza-types', {
-        headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${auth.getToken()}`,
+        const response = await fetch('/api/pizza/pizza-types', {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
 
-        },
-    });
+        if (!response.ok) {
+            throw new Error('Failed to retrieve pizza types, check network tab!');
+        }
 
-    const data = await response.json();
-
-    if (!response.ok) {
-        throw new Error('Failed to retrieve pizza types, check network tab!');
-    }
-
-    return data;
+        return await response.json();
     } catch (err) {
-    console.log('Error fetching pizza types:', err);
-    return Promise.reject('Could not fetch pizza types');
+        console.log('Error fetching pizza types:', err);
+        return Promise.reject('Could not fetch pizza types');
     }
 };
 
-export {retrieveShops, retrieveTypes}
+export { retrieveShops, retrieveTypes };
