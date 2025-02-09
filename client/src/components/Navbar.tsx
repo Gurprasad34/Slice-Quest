@@ -21,9 +21,14 @@ const Navbar = () => {
       <h1>Authentication Review</h1>
       <div>
         {!loginCheck ? (
-          <button className='btn' type='button'>
-            <Link to='/login'>Login</Link>
-          </button>
+          <>
+            <button className='btn' type='button'>
+              <Link to='/login'>Login</Link>
+            </button>
+            <button className='btn' type='button'>
+              <Link to='/create-account'>Create Account</Link>
+            </button>
+          </>
         ) : (
           <button
             className='btn'
