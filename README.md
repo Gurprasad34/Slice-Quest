@@ -6,7 +6,7 @@ NYC Slice Quest is a web application designed for pizza lovers in New York City.
 Frontend:
 - HTML
 - CSS
-- JavaScript
+- TypeScript
 
 Backend:
 - Node.js
