@@ -5,7 +5,7 @@ import type { UserLogin } from '../interfaces/UserLogin';
 
 const Login = () => {
   const [loginData, setLoginData] = useState<UserLogin>({
-    email: '', 
+    email: '',
     password: '',
   });
 
@@ -30,33 +30,52 @@ const Login = () => {
   };
 
   return (
-    <div className='form-container'>
-      <form className='form login-form' onSubmit={handleSubmit}>
-        <h1>Login</h1>
-        <div className='form-group'>
-          <label>Email</label>
-          <input
-            className='form-input'
-            type='email'
-            name='email'
-            value={loginData.email || ''}
-            onChange={handleChange}
-          />
-        </div>
-        <div className='form-group'>
-          <label>Password</label>
-          <input
-            className='form-input'
-            type='password'
-            name='password'
-            value={loginData.password || ''}
-            onChange={handleChange}
-          />
-        </div>
-        <div className='form-group'>
-          <button className='btn btn-primary' type='submit'>
-            Login
-          </button>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
+      <form
+        className="w-full max-w-sm bg-white p-8 rounded-lg shadow-xl space-y-6"
+        onSubmit={handleSubmit}
+      >
+        <h1 className="text-3xl font-semibold text-[#D32F2F] text-center mb-6">
+          Login
+        </h1>
+
+        <div className="space-y-4">
+          <div className="form-group">
+            <label className="block text-gray-700" htmlFor="email">
+              Email
+            </label>
+            <input
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D32F2F] transition"
+              type="email"
+              name="email"
+              value={loginData.email || ''}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label className="block text-gray-700" htmlFor="password">
+              Password
+            </label>
+            <input
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D32F2F] transition"
+              type="password"
+              name="password"
+              value={loginData.password || ''}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <button
+              className="w-full py-3 bg-[#D32F2F] text-white font-semibold rounded-lg hover:bg-[#C2185B] transition"
+              type="submit"
+            >
+              Login
+            </button>
+          </div>
         </div>
       </form>
     </div>

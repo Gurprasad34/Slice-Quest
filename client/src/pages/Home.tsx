@@ -37,26 +37,27 @@ const Home = () => {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
-      <h1 className="text-3xl font-bold text-red-600 mb-6">
-        Welcome to NYC Slice Quest!
-      </h1>
-      <p>With so many rankings of New York's best pizza, it's easy to get lost in the sauce.</p> 
-<p>But how do you find the slice you're craving? Enter NYC Slice Quest.</p> 
-<p>Select your favorite style below, and we'll show you the top spots in the city that perfect it.</p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <div className="min-h-screen bg-[#F8F1E4] p-8">
+      <div className="text-center mb-12">
+        <h1 className="text-5xl font-bold text-[#D32F2F] mb-6">NYC Slice Quest</h1>
+        <p className="mt-4 text-lg text-[#5E5A5A]">Craving the perfect slice? Look no further!</p>
+        <p className="mt-2 text-lg text-[#5E5A5A]">Discover the top pizza spots in New York for every style you crave.</p>
+        <p className="mt-2 text-lg text-[#5E5A5A]">Pick your favorite pizza and find the best places to get it.</p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {pizzaTypesArray.map((slice) => (
           <Link
-          key={slice.id}
-          to={`/pizza-shops/${encodeURIComponent(slice.pizzaType)}`}
-          className="flex flex-col items-center bg-white p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105"
-        >
+            key={slice.id}
+            to={`/pizza-shops/${encodeURIComponent(slice.pizzaType)}`}
+            className="flex flex-col items-center bg-white p-6 rounded-xl shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl"
+          >
             <img
               src={slice.imageUrl}
               alt={slice.pizzaType}
-              className="w-40 h-40 object-cover rounded-lg shadow-md"
+              className="w-48 h-48 object-cover rounded-lg shadow-md"
             />
-            <h2 className="mt-3 text-lg font-semibold text-gray-800">
+            <h2 className="mt-4 text-xl font-semibold text-[#D32F2F] hover:text-[#9C2A2A]">
               {slice.pizzaType}
             </h2>
           </Link>

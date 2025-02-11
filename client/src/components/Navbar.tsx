@@ -17,36 +17,55 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="display-flex justify-space-between align-center py-2 px-5 mint-green">
-      <h1>🍕 NYC Slice Quest 🍕</h1>
-      <div className="nav-links">
-        <Link to="/" className="btn">Home</Link>
+    <div className="flex items-center justify-between py-6 px-8 bg-gradient-to-r from-red-600 via-orange-500 to-yellow-400 shadow-xl rounded-b-lg">
+      <h1 className="text-4xl font-extrabold text-white hover:text-black transition-colors duration-300">
+        🍕 NYC Slice Quest 🍕
+      </h1>
+      <div className="space-x-6">
+        <Link
+          to="/"
+          className="text-xl font-semibold text-white hover:text-gray-800 transition-colors duration-300 transform hover:scale-110"
+        >
+          Home
+        </Link>
         {!loginCheck ? (
           <>
-            <Link to="/create-account" className="btn">Create Account</Link>
-            <Link to="/login" className="btn">Login</Link>
+            <Link
+              to="/create-account"
+              className="text-xl font-semibold text-white hover:text-gray-800 transition-colors duration-300 transform hover:scale-110"
+            >
+              Create Account
+            </Link>
+            <Link
+              to="/login"
+              className="text-xl font-semibold text-white hover:text-gray-800 transition-colors duration-300 transform hover:scale-110"
+            >
+              Login
+            </Link>
           </>
-   
-      ) : (
-      <>
-        <button className='btn' type='button'>
-          <Link to='/profile'>Profile</Link>
-        </button>
-        <button
-          className="btn"
-          type="button"
-          onClick={() => {
-            auth.logout();
-              setLoginCheck(false);
-          }}
-        >
-          Logout
-        </button>
-      </>
-  )}
+        ) : (
+          <>
+            <Link
+              to="/profile"
+              className="text-xl font-semibold text-white hover:text-gray-800 transition-colors duration-300 transform hover:scale-110"
+            >
+              Profile
+            </Link>
+            <button
+              className="text-xl font-semibold text-white hover:text-gray-800 transition-colors duration-300 transform hover:scale-110"
+              type="button"
+              onClick={() => {
+                auth.logout();
+                setLoginCheck(false);
+              }}
+            >
+              Logout
+            </button>
+          </>
+        )}
+      </div>
     </div>
-</div >
-);
+  );
 };
 
 export default Navbar;
