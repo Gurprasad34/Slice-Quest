@@ -15,8 +15,9 @@ const PizzaShop = ({ shop }: { shop: IPizzaShop }) => {
         <h2 className="text-2xl font-bold text-[#D32F2F] mb-2">{shop.name}</h2>
       <p className="text-gray-700 text-sm mb-4">{shop.description}</p>
       <p className="text-gray-600 text-sm mb-2">{shop.address}</p>
-      <p className="text-gray-600 text-sm mb-2">📞 {shop.phone}</p>
-      <p className="text-gray-500 text-sm mb-4">Suggested by: {shop.addedBy}</p>
+      <p className="text-gray-600 text-sm mb-2">
+        📞 <a href={`tel:${shop.phone}`} className="text-blue-500 hover:underline">{shop.phone}</a>
+      </p>      <p className="text-gray-500 text-sm mb-4">Suggested by: {shop.addedBy}</p>
       {shop.website && (
         <a href={shop.website} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
           Visit Website
