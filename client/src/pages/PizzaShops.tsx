@@ -7,8 +7,10 @@ interface IPizzaShop {
   name: string;
   location: string;
   address: string;
+  description: string;
   phone: string;
   website: string;
+  addedBy: string;
 }
 
 const PizzaShops = () => {
