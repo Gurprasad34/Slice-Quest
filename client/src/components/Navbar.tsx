@@ -26,21 +26,27 @@ const Navbar = () => {
             <Link to="/create-account" className="btn">Create Account</Link>
             <Link to="/login" className="btn">Login</Link>
           </>
-        ) : (
-          <button
-            className="btn"
-            type="button"
-            onClick={() => {
-              auth.logout();
+   
+      ) : (
+      <>
+        <button className='btn' type='button'>
+          <Link to='/profile'>Profile</Link>
+        </button>
+        <button
+          className="btn"
+          type="button"
+          onClick={() => {
+            auth.logout();
               setLoginCheck(false);
-            }}
-          >
-            Logout
-          </button>
-        )}
-      </div>
+          }}
+        >
+          Logout
+        </button>
+      </>
+  )}
     </div>
-  );
+</div >
+);
 };
 
 export default Navbar;
