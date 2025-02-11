@@ -24,20 +24,26 @@ const Navbar = () => {
           <button className='btn' type='button'>
             <Link to='/login'>Login</Link>
           </button>
-        ) : (
-          <button
-            className='btn'
-            type='button'
-            onClick={() => {
-              auth.logout();
-            }}
-          >
-            Logout
-          </button>
-        )}
-      </div>
+   
+      ) : (
+      <>
+        <button className='btn' type='button'>
+          <Link to='/profile'>Profile</Link>
+        </button>
+        <button
+          className='btn'
+          type='button'
+          onClick={() => {
+            auth.logout();
+          }}
+        >
+          Logout
+        </button>
+      </>
+  )}
     </div>
-  );
+</div >
+);
 };
 
 export default Navbar;
