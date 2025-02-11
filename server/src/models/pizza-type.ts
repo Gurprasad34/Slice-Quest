@@ -6,7 +6,7 @@ interface PizzaTypeAttributes {
   pizzaShopId: number;
   pizzaType: string;
   description: string;
-  imageUrl: string;
+
 }
 
 interface PizzaTypeCreationAttributes extends Optional<PizzaTypeAttributes, 'id'> {}
@@ -19,7 +19,6 @@ export class PizzaType
   public pizzaShopId!: number;
   public pizzaType!: string;
   public description!: string;
-  public imageUrl!: string;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -50,10 +49,6 @@ export function PizzaTypeFactory(sequelize: Sequelize): typeof PizzaType {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      imageUrl: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      }
     },
     {
       tableName: 'pizza_types',
