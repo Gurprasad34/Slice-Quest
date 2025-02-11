@@ -1,9 +1,32 @@
-# React + Vite
+## NYC Slice Quest
+# Description
+NYC Slice Quest is a web application designed for pizza lovers in New York City. The platform allows users to create accounts, browse various pizza shops, and explore different pizza types offered by each shop. Users can view detailed information about each pizza shop, including their location, pizza options, and contact information. Whether you're craving a classic cheese pizza or a unique topping, NYC Slice Quest helps you find the perfect slice in the city that never sleeps.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Tech Used
+Frontend:
+- HTML
+- CSS
+- JavaScript
 
-Currently, two official plugins are available:
+Backend:
+- Node.js
+- Express.js
+- Sequelize (for database management)
+- 
+Database:
+- PostgreSQL
+- 
+Authentication:
+- JWT (JSON Web Tokens) for secure user authenticationDeployment:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
- hi hello 
+Deployment:
+
+# Screenshot
+
+# Link
+NYC Slice Quest Live Website
+
+# Credits
+Developer: Saif Shihadeh, Gurprasad Singh, Bryan Esslinger, Ricorda Marmolejo
+Design: Inspired by New York's iconic pizza culture
+
