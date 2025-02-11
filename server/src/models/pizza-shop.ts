@@ -7,6 +7,7 @@ interface PizzaShopAttributes {
   address: string;    // New address property
   phone: string; // New phone number property
   addedBy: string;
+  website?: string;
 }
 
 interface PizzaShopCreationAttributes extends Optional<PizzaShopAttributes, 'id'> {}
@@ -21,6 +22,8 @@ export class PizzaShop
   public address!: string;    // Add address property
   public phone!: string; // Add phone number property
   public addedBy!: string;
+  website?: string;
+
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -53,7 +56,11 @@ export function PizzaShopFactory(sequelize: Sequelize): typeof PizzaShop {
       addedBy: {
         type: DataTypes.STRING,
         allowNull: false,
-      }
+      },
+      website: { // Define optional website column
+        type: DataTypes.STRING,
+        allowNull: true, // Make it optional
+      },
     },
     {
       tableName: 'pizza_shops',
