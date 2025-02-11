@@ -12,7 +12,7 @@ Backend:
 - Node.js
 - Express.js
 - Sequelize (for database management)
-- 
+  
 Database:
 - PostgreSQL
 - 
@@ -22,6 +22,9 @@ Authentication:
 Deployment:
 
 # Screenshot
+![Screenshot 2025-02-10 at 7 41 38 PM](https://github.com/user-attachments/assets/d27f96ff-be36-488b-82aa-4ee6c9f94ad5)
+
+
 
 # Link
 NYC Slice Quest Live Website
