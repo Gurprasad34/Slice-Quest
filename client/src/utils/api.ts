@@ -1,5 +1,7 @@
 import axios from 'axios';
-const API_URL = 'http://localhost:5000'; // Update this to our API server
+
+// Use the environment variable for the server URL in production
+const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'; // Fallback to localhost if not set
 
 export const fetchPizzaShopsByType = async (pizzaType: string) => {
   try {
