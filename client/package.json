@@ -11,13 +11,13 @@
     "start": "serve -s dist"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4.0.6",
     "@tailwindcss/vite": "^4.0.4",
     "axios": "^1.7.9",
     "jwt-decode": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.23.1",
-    "tailwindcss": "^4.0.4"
+    "react-router-dom": "^6.23.1"
   },
   "devDependencies": {
     "@types/node": "^22.13.4",
@@ -26,10 +26,13 @@
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.20",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "postcss": "^8.5.2",
     "serve": "^14.2.4",
+    "tailwindcss": "^4.0.6",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
   }
