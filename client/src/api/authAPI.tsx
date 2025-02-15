@@ -3,7 +3,11 @@ import { UserSignUp } from '../interfaces/UserSignUp';
 
 const login = async (userInfo: UserLogin) => {
   try {
-    const response = await fetch('http://localhost:3001/api/auth/login', { 
+    const baseUrl = process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3001'
+      : process.env.REACT_APP_API_URL;
+
+    const response = await fetch(`${baseUrl}/api/auth/login`, { 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -27,7 +31,11 @@ const login = async (userInfo: UserLogin) => {
 
 const Createuseraccount = async (userInfo: UserSignUp) => {
   try {
-    const response = await fetch('http://localhost:3001/api/users', { 
+    const baseUrl = process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3001'
+      : process.env.REACT_APP_API_URL;
+
+    const response = await fetch(`${baseUrl}/api/users`, { 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

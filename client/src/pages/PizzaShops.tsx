@@ -24,10 +24,12 @@ const PizzaShops = () => {
 
     const fetchShops = async () => {
       try {
+        const baseUrl = process.env.NODE_ENV === 'development'
+          ? 'http://localhost:3001'
+          : process.env.REACT_APP_API_URL;
+
         const response = await fetch(
-          `http://localhost:3001/api/pizza/pizza-shops?type=${encodeURIComponent(
-            type
-          )}`
+          `${baseUrl}/api/pizza/pizza-shops?type=${encodeURIComponent(type)}`
         );
         if (!response.ok) throw new Error("Failed to fetch pizza shops");
         const data = await response.json();

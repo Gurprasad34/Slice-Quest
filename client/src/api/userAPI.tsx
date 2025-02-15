@@ -2,7 +2,11 @@ import Auth from '../utils/auth';
 
 const retrieveUsers = async () => {
   try {
-    const response = await fetch('http://localhost:3001/api/users', {
+    const baseUrl = process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3001'
+      : process.env.REACT_APP_API_URL;
+
+    const response = await fetch(`${baseUrl}/api/users`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
