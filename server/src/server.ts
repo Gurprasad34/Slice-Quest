@@ -2,22 +2,22 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors'; 
 import path from 'path';
-import { Sequelize } from 'sequelize';
 import apiRoutes from './routes/index.js';
 import { fileURLToPath } from 'url';
+import { sequelize } from './models'; // Ensure models are properly initialized
+import { exec } from 'child_process';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-const forceDatabaseRefresh = false;
 
-// Use the DATABASE_URL from environment variables (provided by Render)
+// Ensure DATABASE_URL is set
 const databaseUrl = process.env.DATABASE_URL;
 if (!databaseUrl) {
   console.error('❌ DATABASE_URL environment variable is missing');
-  process.exit(1); // Exit if the database URL is missing
+  process.exit(1);
 }
 
-// Manually define __dirname for ES Modules
+// Define __dirname for ES Modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -32,15 +32,16 @@ app.use(express.json());
 
 // Debugging Middleware
 app.use((req, _res, next) => {
-  console.log(`Incoming request: ${req.method} ${req.path}`);
+  console.log(`📥 Incoming request: ${req.method} ${req.path}`);
   next();
 });
 
+// Test Route
 app.get('/test', (_req, res) => {
   res.json({ message: '✅ Express is working' });
 });
 
-// Register API Routes FIRST
+// Register API Routes
 console.log('✅ Mounting /api routes...');
 app.use('/api', apiRoutes);
 console.log('✅ /api routes mounted successfully');
@@ -48,18 +49,29 @@ console.log('✅ /api routes mounted successfully');
 // Serve Static Files
 app.use(express.static(path.resolve(__dirname, '../../client/dist')));
 
-// Initialize Sequelize with the DATABASE_URL environment variable
-const sequelize = new Sequelize(databaseUrl, {
-  dialect: 'postgres',
-  protocol: 'postgres',
-  logging: false,
-});
+// Function to Run Migrations
+const runMigrations = async () => {
+  console.log('⚙️ Running migrations...');
+  return new Promise((resolve, reject) => {
+    exec('npx sequelize-cli db:migrate', (error, stdout, stderr) => {
+      if (error) {
+        console.error(`❌ Migration error: ${error.message}`);
+        return reject(error);
+      }
+      if (stderr) {
+        console.warn(`⚠️ Migration warning: ${stderr}`);
+      }
+      console.log(`✅ Migrations complete: ${stdout}`);
+      resolve(stdout);
+    });
+  });
+};
 
-// Verify Database Connection Before Starting Server
+// Initialize Sequelize & Run Migrations Before Starting Server
 sequelize.authenticate()
   .then(() => {
     console.log('✅ Database connected successfully');
-    return sequelize.sync({ force: forceDatabaseRefresh });
+    return runMigrations(); // Apply migrations before syncing
   })
   .then(() => {
     console.log('✅ Database sync complete');
@@ -68,5 +80,5 @@ sequelize.authenticate()
     });
   })
   .catch((err) => {
-    console.error('❌ Database connection failed:', err);
+    console.error('❌ Database connection or migration failed:', err);
   });
