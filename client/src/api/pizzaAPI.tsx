@@ -1,9 +1,9 @@
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+
 const retrieveShops = async () => {
     try {
-        const response = await fetch('/api/pizza/pizza-shops', {
-            headers: {
-                'Content-Type': 'application/json',
-            },
+        const response = await fetch(`${BASE_URL}/api/pizza/pizza-shops`, {
+            headers: { 'Content-Type': 'application/json' },
         });
 
         if (!response.ok) {
@@ -12,17 +12,15 @@ const retrieveShops = async () => {
 
         return await response.json();
     } catch (err) {
-        console.log('Error fetching pizza shops:', err);
+        console.error('Error fetching pizza shops:', err);
         return Promise.reject('Could not fetch pizza shops');
     }
 };
 
 const retrieveTypes = async () => {
     try {
-        const response = await fetch('/api/pizza/pizza-types', {
-            headers: {
-                'Content-Type': 'application/json',
-            },
+        const response = await fetch(`${BASE_URL}/api/pizza/pizza-types`, {
+            headers: { 'Content-Type': 'application/json' },
         });
 
         if (!response.ok) {
@@ -31,7 +29,7 @@ const retrieveTypes = async () => {
 
         return await response.json();
     } catch (err) {
-        console.log('Error fetching pizza types:', err);
+        console.error('Error fetching pizza types:', err);
         return Promise.reject('Could not fetch pizza types');
     }
 };
