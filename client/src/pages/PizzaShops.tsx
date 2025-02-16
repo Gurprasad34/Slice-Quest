@@ -20,22 +20,29 @@ const PizzaShops = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (!type) return;
+    if (!type) {
+      setError("No pizza type specified.");
+      setLoading(false);
+      return;
+    }
+
+    console.log("Pizza type from params:", type); // Debugging log
 
     const fetchShops = async () => {
       try {
-        const baseUrl = process.env.NODE_ENV === 'development'
-          ? 'http://localhost:3001'
-          : process.env.REACT_APP_API_URL;
+        const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:3001";
 
-        const response = await fetch(
-          `${baseUrl}/api/pizza/pizza-shops?type=${encodeURIComponent(type)}`
-        );
-        if (!response.ok) throw new Error("Failed to fetch pizza shops");
+        const requestUrl = `${baseUrl}/api/pizza/pizza-shops?type=${encodeURIComponent(type)}`;
+        console.log("Fetching pizza shops from:", requestUrl); // Debugging log
+
+        const response = await fetch(requestUrl);
+        if (!response.ok) throw new Error(`Failed to fetch pizza shops: ${response.statusText}`);
+
         const data = await response.json();
         setShops(data);
       } catch (err) {
-        setError("Error fetching pizza shops.");
+        console.error("Error fetching pizza shops:", err); // Debugging log
+        setError("Error fetching pizza shops. Please try again later.");
       } finally {
         setLoading(false);
       }
@@ -49,7 +56,7 @@ const PizzaShops = () => {
   if (shops.length === 0)
     return (
       <p className="text-center text-gray-600">
-        No pizza shops found for {type}.
+        No pizza shops found for "{type}".
       </p>
     );
 
