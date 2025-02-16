@@ -30,7 +30,7 @@ const PizzaShops = () => {
 
     const fetchShops = async () => {
       try {
-        const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:3001";
+        const baseUrl = import.meta.env.VITE_API_URL ?? "https://slice-quest-server.onrender.com";
 
         const requestUrl = `${baseUrl}/api/pizza/pizza-shops?type=${encodeURIComponent(type)}`;
         console.log("Fetching pizza shops from:", requestUrl); // Debugging log
