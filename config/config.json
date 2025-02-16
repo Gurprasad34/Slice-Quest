@@ -1,0 +1,17 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "E$$4sql",
+    "database": "pizza_db",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "render_deploy_ygw9_user",
+    "password": "j6OxJQcpOtxhwU4AdcG8XmPtvaXPQj1F",
+    "database": "render_deploy_ygw9",
+    "host": "dpg-cuik4el6l47c73ag7sl0-a.virginia-postgres.render.com",
+    "dialect": "postgres",
+    "ssl": true
+  }
+}
