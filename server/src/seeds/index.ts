@@ -3,7 +3,7 @@ import { seedPizzaData } from './pizza-seeds.js'; // Import pizza seed function
 
 import sequelize from '../config/connection.js';
 
-const seedAll = async (): Promise<void> => {
+export const seedAll = async (): Promise<void> => {
   try {
     await sequelize.sync({ force: true });
     console.log('\n----- DATABASE SYNCED -----\n');
@@ -20,5 +20,3 @@ const seedAll = async (): Promise<void> => {
     process.exit(1);
   }
 };
-
-seedAll();

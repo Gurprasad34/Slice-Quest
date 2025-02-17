@@ -5,6 +5,7 @@ import path from 'path';
 import { Sequelize } from 'sequelize';
 import apiRoutes from './routes/index.js';
 import { fileURLToPath } from 'url';
+import { seedAll } from './seeds/index.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -63,6 +64,10 @@ sequelize.authenticate()
   })
   .then(() => {
     console.log('✅ Database sync complete');
+    return seedAll();  // Seed the database after syncing
+  })
+  .then(() => {
+    console.log('✅ Database seeded successfully');
     app.listen(PORT, () => {
       console.log(`🚀 Server is running on http://localhost:${PORT}`);
     });
