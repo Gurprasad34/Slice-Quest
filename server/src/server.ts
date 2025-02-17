@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url';
 import { seedAll } from './seeds/index.js';
 
 const app = express();
-const PORT = Number(process.env.PORT) || 3001;  // Ensure PORT is a number
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3001;  // Ensure PORT is parsed correctly
 const forceDatabaseRefresh = false;
 
 // Log the PORT to check its value
@@ -18,7 +18,7 @@ console.log(`🛠️ Attempting to start server on PORT: ${PORT}`);
 const databaseUrl = process.env.DATABASE_URL;
 if (!databaseUrl) {
   console.error('❌ DATABASE_URL environment variable is missing');
-  process.exit(1); // Exit if the database URL is missing
+  console.warn('⚠️ The server will start, but API routes requiring DB access may fail.');
 }
 
 // Manually define __dirname for ES Modules
@@ -53,7 +53,7 @@ console.log('✅ /api routes mounted successfully');
 app.use(express.static(path.resolve(__dirname, '../../client/dist')));
 
 // Initialize Sequelize with the DATABASE_URL environment variable
-const sequelize = new Sequelize(databaseUrl, {
+const sequelize = new Sequelize(databaseUrl || '', {  // Allow empty string to prevent crashes
   dialect: 'postgres',
   protocol: 'postgres',
   logging: false,
@@ -72,6 +72,13 @@ sequelize.authenticate()
   .then(() => {
     console.log('✅ Database seeded successfully');
 
+    if (!PORT) {
+        console.error("❌ PORT is undefined. The server cannot start.");
+        process.exit(1);
+    }
+
+    console.log(`🔄 Binding server to PORT: ${PORT}`);
+
     // Start the Express server
     app.listen(PORT, () => {  
       console.log(`🚀 Server is running on port ${PORT}`);
@@ -79,4 +86,11 @@ sequelize.authenticate()
   })
   .catch((err) => {
     console.error('❌ Database connection failed:', err);
+    console.warn('⚠️ Continuing startup, but API routes requiring DB access may fail.');
+    
+    // Ensure the server starts even if the database connection fails
+    console.log(`🔄 Binding server to PORT: ${PORT}`);
+    app.listen(PORT, () => {  
+      console.log(`🚀 Server is running on port ${PORT}`);
+    });
   });
