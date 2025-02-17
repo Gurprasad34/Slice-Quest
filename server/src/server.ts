@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url';
 import { seedAll } from './seeds/index.js';
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = Number(process.env.PORT) || 3001;  // Ensuring PORT is a number
 const forceDatabaseRefresh = false;
 
 // Use the DATABASE_URL from environment variables (provided by Render)
@@ -68,7 +68,7 @@ sequelize.authenticate()
   })
   .then(() => {
     console.log('✅ Database seeded successfully');
-    app.listen(PORT, () => {
+    app.listen(PORT, '0.0.0.0', () => {  // Ensure listening on all network interfaces
       console.log(`🚀 Server is running on http://localhost:${PORT}`);
     });
   })
