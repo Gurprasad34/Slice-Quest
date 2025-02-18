@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url';
 import { seedAll } from './seeds/index.js';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 const forceDatabaseRefresh = false;
 
 // Log the PORT to check its value
@@ -90,7 +90,7 @@ sequelize.authenticate()
     
     // Ensure the server starts even if the database connection fails
     console.log(`🔄 Binding server to PORT: ${PORT}`);
-    app.listen(PORT, () => {  
+    app.listen(PORT, '0.0.0.0', () => {  
       console.log(`🚀 Server is running on port ${PORT}`);
     });
   });
