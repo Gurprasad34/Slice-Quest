@@ -4,16 +4,18 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 3000,
+    allowedHosts: ["slice-quest-server-xblm.onrender.com", "https://slice-quest-client-skbk.onrender.com", "0.0.0.0"],
+    host: "0.0.0.0",
+    port: 3001,
     open: true,
     proxy: process.env.NODE_ENV === 'development' ? {
       '/api': {
-        target: 'http://localhost:3001',
+        target: 'https://slice-quest-server-xblm.onrender.com',
         changeOrigin: true,
         secure: false,
       },
       '/auth': {
-        target: 'http://localhost:3001',
+        target: 'https://slice-quest-server-xblm.onrender.com',
         changeOrigin: true,
         secure: false,
       },
@@ -24,5 +26,9 @@ export default defineConfig({
   },
   define: {
     'process.env.VITE_API_BASE_URL': JSON.stringify(process.env.VITE_API_BASE_URL),
+  },
+  preview: {
+    host: true,
+    port: 3000,
   },
 });
