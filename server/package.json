@@ -6,11 +6,10 @@
   "type": "module",
   "scripts": {
     "build": "npx tsc",
-    "start": "npx tsx ./src/server.ts && npx tsx ./src/seeds/index.ts",
+    "start": "npm run build && node dist/server.js --ignore client",
     "dev": "npx nodemon",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "seed": "npx tsx src/seeds/index.ts",
-    "render-build": "npm install && npm run build"
+    "seed": "npx run build && node dist/seeds/index.js"
   },
   "nodemonConfig": {
     "watch": [
