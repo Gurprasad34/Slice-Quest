@@ -6,11 +6,14 @@ import { Sequelize } from 'sequelize';
 // Check for DATABASE_URL in environment variables for Render
 const databaseUrl = process.env.DATABASE_URL;
 
-// Use DATABASE_URL if available (for Render)
 const sequelize = databaseUrl
   ? new Sequelize(databaseUrl, {
       dialect: 'postgres',
       dialectOptions: {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false, // Helps with self-signed certificates (used by Render)
+        },
         decimalNumbers: true,
       },
     })

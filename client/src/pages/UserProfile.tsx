@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'; 
+import { useState, useEffect } from 'react'; 
 import SavedPizzaList from '../components/SavedPizzaList';
 import { getSavedPizzaShops } from '../utils/api';
 
