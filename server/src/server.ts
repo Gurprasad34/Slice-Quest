@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url';
 import { seedAll } from './seeds/index.js';
 
 const app = express();
-const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3001;  // Ensure PORT is parsed correctly
+const PORT = process.env.PORT || 3000;
 const forceDatabaseRefresh = false;
 
 // Log the PORT to check its value
