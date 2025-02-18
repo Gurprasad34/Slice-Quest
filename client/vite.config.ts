@@ -15,7 +15,7 @@ export default defineConfig({
         secure: false,
       },
       '/auth': {
-        target: 'https://slice-quest-server-xblm.onrender.com',
+        target: 'https://slice-quest-server-xblm.onrender.com/api',
         changeOrigin: true,
         secure: false,
       },
