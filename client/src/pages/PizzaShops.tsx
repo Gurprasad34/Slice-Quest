@@ -17,7 +17,8 @@ const PizzaShops = () => {
   const { type } = useParams<{ type: string }>(); // Get pizza type from URL
   const [shops, setShops] = useState<IPizzaShop[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string>("");
+  const [prevType, setPrevType] = useState<string | null>(null); // To track if 'type' has actually changed
 
   useEffect(() => {
     if (!type) {
@@ -26,22 +27,22 @@ const PizzaShops = () => {
       return;
     }
 
-    console.log("Pizza type from params:", type); // Debugging log
+    if (type === prevType) return; // Prevent refetching if the 'type' hasn't changed
+
+    setPrevType(type); // Update the previous type to the current one
+    setLoading(true); // Reset loading state before fetching
 
     const fetchShops = async () => {
       try {
         const baseUrl = import.meta.env.VITE_API_URL ?? "https://slice-quest-server.onrender.com";
-
         const requestUrl = `${baseUrl}/api/pizza/pizza-shops?type=${encodeURIComponent(type)}`;
-        console.log("Fetching pizza shops from:", requestUrl); // Debugging log
-
         const response = await fetch(requestUrl);
         if (!response.ok) throw new Error(`Failed to fetch pizza shops: ${response.statusText}`);
 
         const data = await response.json();
         setShops(data);
       } catch (err) {
-        console.error("Error fetching pizza shops:", err); // Debugging log
+        console.error("Error fetching pizza shops:", err);
         setError("Error fetching pizza shops. Please try again later.");
       } finally {
         setLoading(false);
@@ -49,16 +50,15 @@ const PizzaShops = () => {
     };
 
     fetchShops();
-  }, [type]);
+  }, [type, prevType]); // Effect now depends on 'prevType' to avoid unnecessary rerenders
 
   if (loading) return <p className="text-center">Loading pizza shops...</p>;
   if (error) return <p className="text-center text-red-500">{error}</p>;
-  if (shops.length === 0)
-    return (
-      <p className="text-center text-gray-600">
-        No pizza shops found for "{type}".
-      </p>
-    );
+  if (shops.length === 0) return (
+    <p className="text-center text-gray-600">
+      No pizza shops found for "{type}".
+    </p>
+  );
 
   return (
     <div>
@@ -75,3 +75,4 @@ const PizzaShops = () => {
 };
 
 export default PizzaShops;
+
