@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Createuseraccount } from '../api/authAPI';
-// import { AuthService } from '../utils/auth';
+import  AuthService  from '../utils/auth';
 
 const CreateAccount: React.FC = () => {
     const [username, setUsername] = useState('');
@@ -19,7 +19,8 @@ const CreateAccount: React.FC = () => {
         }
         const data = await Createuseraccount({ username, password, email });
         console.log({ data });
-        navigate('/');
+        AuthService.login(data.token);
+       navigate('/');
     };
 
     return (

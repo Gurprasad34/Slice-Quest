@@ -2,7 +2,7 @@ import express from 'express';
 import type { Request, Response } from 'express';
 import { User } from '../../models/index.js';
 import { authenticateToken } from '../../middleware/auth.js';
-
+import  jwt from "jsonwebtoken";
 console.log('✅ userRouter is being loaded');
 
 const router = express.Router();
@@ -63,7 +63,12 @@ router.post('/', async (req: Request, res: Response) => {
   const { username, email, password } = req.body;
   try {
     const newUser = await User.create({ username, email, password });
-    return res.status(201).json(newUser);
+    const secretKey = process.env.JWT_SECRET_KEY || '';
+
+    const token = jwt.sign(newUser.get({plain:true}), secretKey, { expiresIn: '1h' });
+  
+  
+    return res.status(201).json({newUser,token});
   } catch (error: any) {
     return res.status(400).json({ message: error.message });
   }

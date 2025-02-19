@@ -51,6 +51,9 @@ export function UserFactory(sequelize: Sequelize): typeof User {
       },
     },
     {
+      defaultScope: {
+        attributes: { exclude: ['password'] },
+      },
       tableName: 'users',
       sequelize,
       hooks: {
