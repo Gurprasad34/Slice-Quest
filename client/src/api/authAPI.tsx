@@ -1,12 +1,10 @@
 import type { UserLogin } from '../interfaces/UserLogin';
 import { UserSignUp } from '../interfaces/UserSignUp';
 
+const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
+
 const login = async (userInfo: UserLogin) => {
   try {
-    const baseUrl = process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3001'
-      : process.env.REACT_APP_API_URL;
-
     const response = await fetch(`${baseUrl}/api/auth/login`, { 
       method: 'POST',
       headers: {
@@ -31,10 +29,6 @@ const login = async (userInfo: UserLogin) => {
 
 const Createuseraccount = async (userInfo: UserSignUp) => {
   try {
-    const baseUrl = process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3001'
-      : process.env.REACT_APP_API_URL;
-
     const response = await fetch(`${baseUrl}/api/users`, { 
       method: 'POST',
       headers: {
